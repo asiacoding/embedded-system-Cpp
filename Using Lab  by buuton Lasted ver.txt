@@ -1,0 +1,62 @@
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+//#define Set_BitOne(reg,bit) (reg |= 1<<bit )
+//#define Set_BitZiro(reg,bit) (reg &= ~(1<<bit))
+
+
+
+
+int GetDataFromPinFPIOB(int Pin){
+	return  GPIOB -> IDR &(1<<Pin);
+}
+
+void SetValueToPin (int Pin,int Statis){
+	if(Statis == 1){
+		GPIOA->ODR  = (1<<Pin);
+	}else{
+		GPIOA->ODR  &= ~(1<<Pin);
+	}
+}
+
+
+void Pin_Dir (uint8_t  PinLoc,
+			  uint8_t  OnPin,
+			  uint8_t  IsOutputOrInput)
+{
+	//PinLoc|16 ~ 4
+}
+
+
+int main(void)
+{
+	//RCC-> APB2ENR = (1<<2) | (1<<3) ;
+	//((RCC_TypeDef *)((0x40000000UL + 0x00020000UL) + 0x00001000UL))
+	//GPIOA -> CRL = 0x00000030; // 0x00000030;
+	//((GPIO_TypeDef *)((0x40000000UL + 0x00010000UL) + 0x00000800UL))
+	//GPIOB -> CRL=  0x00040000;
+
+	RCC-> APB2ENR = (1<<2) | (1<<3) ;
+	GPIOA -> CRL = 0x00000030;
+	GPIOB -> CRL=  0x00040000;
+
+	while(1)
+	{
+		//unsigned int btn1 = GetDataFromPinFPIOB(4);
+		//GPIOA->ODR = (1<<1);
+		//if(btn1 == 1) { 		SetValueToPin(1,1); }
+		//else { 		SetValueToPin(1,0); }
+
+	//	unsigned int  btn1 = GPIOB -> IDR &(1<<4);
+
+		if(btn1 == 1)
+		{
+			GPIOA->ODR = (1<<1);
+		}
+		else
+		{
+			GPIOA-> ODR &= ~(1<<1);
+		}
+	}
+}
