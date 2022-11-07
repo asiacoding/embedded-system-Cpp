@@ -1,0 +1,17 @@
+/*
+ * Led.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#ifndef SRC_LED_H_
+#define SRC_LED_H_
+
+class Led {
+public:
+	Led();
+	virtual ~Led();
+};
+
+#endif /* SRC_LED_H_ */

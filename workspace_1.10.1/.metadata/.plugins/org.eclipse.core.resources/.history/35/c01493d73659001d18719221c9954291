@@ -1,0 +1,16 @@
+#include "main.h"
+
+
+int main(void)
+{
+
+	MainClass f{1};
+	f->
+
+  while (1)
+  {
+
+  }
+
+}
+

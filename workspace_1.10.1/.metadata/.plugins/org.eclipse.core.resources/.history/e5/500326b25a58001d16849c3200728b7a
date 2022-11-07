@@ -1,0 +1,47 @@
+/*
+ * DrowingLCD.cpp
+ *
+ *  Created on: Oct 30, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+
+#include "fonts.h"
+#include "fonts.c"
+#include "ssd1306.h"
+#include "ssd1306.c"
+
+
+struct SizeLEDText
+{
+	uint16_t Y;
+	uint16_t X;
+};
+
+class DrowingLCDLib
+{
+
+public:
+
+	DrowingLCDLib() { SSD1306_Init(); }
+
+	void SetData(char contextText,SizeLEDText Size)
+	{
+		SSD1306_GotoXY (Size->X, Size->Y);
+		SSD1306_Puts (contextText, &Font_7x10, (StapMune==0) ? 0 : (StapMune > 3) ? 0 : 1);
+	}
+
+	void SetData(char contextText,uint16_t X,uint16_t Y,FontDef_t* Font)
+	{
+		//FontDef_t*
+		SSD1306_GotoXY (X, Y);
+		SSD1306_Puts (contextText, &Font_7x10, (StapMune==0) ? 0 : (StapMune > 3) ? 0 : 1);
+	}
+
+private:
+	char strCopy[15];
+
+};
+
+
+

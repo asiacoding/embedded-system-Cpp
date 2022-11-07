@@ -1,0 +1,23 @@
+/*
+ * MainMethod.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "MainMethod.h"
+
+MainMethod::MainMethod() {
+	// TODO Auto-generated constructor stub
+
+}
+
+MainMethod::~MainMethod() {
+	// TODO Auto-generated destructor stub
+}
+
+int MainMethod::ReadPin(GPIO_TypeDef * Ty,uint16_t Pin){
+	//GPIO A - B - C - D , int
+	return  Ty -> IDR &Pin;
+}
+

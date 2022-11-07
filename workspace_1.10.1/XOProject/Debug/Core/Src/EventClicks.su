@@ -1,0 +1,5 @@
+../Core/Src/EventClicks.c:15:5:ClickButtons	24	static
+../Core/Src/EventClicks.c:44:6:EventMeunLed	16	static
+../Core/Src/EventClicks.c:53:6:EventMeunLEDsRGP	16	static
+../Core/Src/EventClicks.c:61:6:EventBuzzer	16	static
+../Core/Src/EventClicks.c:77:6:EventBeSoon	16	static

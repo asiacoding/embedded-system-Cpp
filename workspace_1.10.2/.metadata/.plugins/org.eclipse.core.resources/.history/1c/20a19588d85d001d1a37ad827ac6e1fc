@@ -1,0 +1,38 @@
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "stm32f1xx_hal.h"
+
+/*
+ How to Ues
+ int values[100] = { 1,2 ... };
+ foreach(int *v, values)
+ {
+ int index = (*v); // Get Index in Array
+ }
+ */
+
+#define foreach(item, array) \
+    for(int keep = 1, \
+            count = 0,\
+            size = sizeof (array) / sizeof *(array); \
+        keep && count != size; \
+        keep = !keep, count++) \
+      for(item = (array) + count; keep; keep = !keep)
+
+/*
+	How to ues
+	 int values[100] = { 1,2 ... };
+	 int IndexValue=10;
+	 int NewValue=10;
+	 addarr(&values,IndexValue,NewValue);
+*/
+#define addarr(itemarry,Index,Value) \
+	*itemarry[Index] = Value
+
+
+
+int GetLenInt(int * arr){ int Length = 0; while (arr[Length] != 0) { Length += 1;}; return Length; }
+
+// SIze = 1/1
+

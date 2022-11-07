@@ -1,0 +1,16 @@
+/*
+ * MainMethod.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+
+
+
+class MainMethod {
+public:
+	int ReadPin(GPIO_TypeDef * Ty,uint16_t Pin);
+	void WritePin();
+};
+

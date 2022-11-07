@@ -1,0 +1,18 @@
+/*
+ * MainMethod.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#ifndef SRC_MAINMETHOD_H_
+#define SRC_MAINMETHOD_H_
+
+class MainMethod {
+public:
+	MainMethod();
+	virtual ~MainMethod();
+	int ReadPin(GPIO_TypeDef * Ty,uint16_t Pin);
+};
+
+#endif /* SRC_MAINMETHOD_H_ */

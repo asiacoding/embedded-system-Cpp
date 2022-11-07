@@ -1,0 +1,36 @@
+/*
+ * LcdOledModule.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "LcdOledModule.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "ssd1306.c"
+
+
+
+void LcdOledModule::SetText(char *str, FontDef_t *Fonts, int X, int Y,
+		int ColorIndex) {
+	SSD1306_GotoXY (X, Y);
+	SSD1306_Puts (str, &Fonts, ColorIndex);
+}
+
+void LcdOledModule::Clear ()
+{
+	SSD1306_Clear();
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+#include "stm32f1xx_hal.h"
+
+
+
+//UI Apps
+//Front End
+
+
+/*
+ * Name  	| Index | CountIndex
+ * ----------------------------------
+ * MainMun  | 0	     | ( Index = 0 ~ 1   )
+ * Led   	| 1 	 | ( index = 0 ~ 3   )
+ * LEDs RGB | 2 	 | ( index = 1 value )
+ * */
+
+
+
+
+void PrintLCDByFont(uint16_t X, uint16_t Y, char *str, FontDef_t *Font,
+		int IndexColor) {
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, Font,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+void PrintLCD(uint16_t X, uint16_t Y, char *str, int IndexColor) {
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, &Font_7x10,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+
+
+void GetList(int* Index,int* IndexMenu);
+
+void GetListMainMenus(int IndexMune);
+void GetListLed(int IndexMune);
+void GetListLedRGB(int IndexMune);
+
+
+void GetListSoonModel(int IndexMune);
+
+
+
+
+
+
+
+
+

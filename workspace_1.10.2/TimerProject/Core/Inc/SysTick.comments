@@ -1,0 +1,2 @@
+//int main(void) { MX_GPIO_Init(); SysTick->CTRL = (1 << 0) | (1 << 2); SysTick->LOAD = 7999;  while (1) {HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11,1); } }	//sysTickDelay(4000);
+//void sysTickDelay(int delay) { while (delay--) { while (!(SysTick->CTRL & (1 << 16))); }}

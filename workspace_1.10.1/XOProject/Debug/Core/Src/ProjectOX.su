@@ -1,0 +1,7 @@
+../Core/Src/ProjectOX.c:36:6:PrintLCDByFont	24	static
+../Core/Src/ProjectOX.c:43:6:PrintLCD	24	static
+../Core/Src/ProjectOX.c:48:6:AddTotal	24	static
+../Core/Src/ProjectOX.c:57:6:GetList	16	static
+../Core/Src/ProjectOX.c:62:5:Play	16	static
+../Core/Src/ProjectOX.c:77:17:StatusGame	40	static
+../Core/Src/ProjectOX.c:132:6:DisplyGird	56	static

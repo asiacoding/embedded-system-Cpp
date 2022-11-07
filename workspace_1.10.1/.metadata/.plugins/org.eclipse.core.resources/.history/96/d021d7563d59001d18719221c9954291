@@ -1,0 +1,17 @@
+#include <ConfingSystem.h>
+#include "main.h"
+
+ConfingSystem ConfiObj;
+
+int main(void)
+{
+
+	ConfiObj.InitApp();
+
+	while (1)
+	{
+		ConfiObj.TogglePin(GPIOC, GPIO_PIN_14);
+	}
+	ConfiObj->TogglePin(GPIOC,GPIO_PIN_13);
+}
+

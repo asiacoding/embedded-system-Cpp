@@ -1,0 +1,19 @@
+/*
+ * ConfingSystem.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include <ConfingSystemClass.h>
+
+void ConfingSystem::InitApp() {
+	// TODO Auto-generated constructor stub
+	HAL_Init();
+	SystemClock_Config();
+	this->MX_GPIO_Init();
+	this->MX_TIM1_Init();
+	this->MX_I2C1_Init();
+
+}
+

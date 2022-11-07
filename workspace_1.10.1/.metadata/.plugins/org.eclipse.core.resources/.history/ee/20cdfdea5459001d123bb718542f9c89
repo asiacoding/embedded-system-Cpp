@@ -1,0 +1,16 @@
+/*
+ * MainMethod.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "MainMethod.h"
+
+
+void WritePin()
+{
+
+}
+
+

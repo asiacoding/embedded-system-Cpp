@@ -1,0 +1,37 @@
+#include "stm32f1xx_hal.h"
+
+
+
+//UI Apps
+//Front End
+
+
+/*
+ * Name  	| Index | CountIndex
+ * ----------------------------------
+ * MainMun  | 0	     | ( Index = 0 ~ 1   )
+ * Led   	| 1 	 | ( index = 0 ~ 3   )
+ * LEDs RGB | 2 	 | ( index = 1 value )
+ * */
+
+
+
+void PrintLCDByFont(uint16_t X,uint16_t Y,char* str,FontDef_t* Font,int IndexColor);
+void PrintLCD(uint16_t X,uint16_t Y,char* str,int IndexColor);
+
+
+
+void GetList(int* Index,int* IndexMenu);
+
+void GetListMainMenus(int IndexMune);
+void GetListLed(int IndexMune);
+void GetListLedRGB(int IndexMune);
+
+
+
+
+
+
+
+
+

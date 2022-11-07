@@ -1,0 +1,42 @@
+#include "stm32f1xx_hal.h"
+
+//UI Apps
+//Front End
+
+
+/*
+ * Name  	| Index | CountIndex
+ * ----------------------------------
+ * MainMun  | 0	     | ( Index = 0 ~ 1   )
+ * Led   	| 1 	 | ( index = 0 ~ 3   )
+ * LEDs RGB | 2 	 | ( index = 1 value )
+ * */
+
+
+
+
+//ex Fun
+void PrintLCDByFont(uint16_t X,uint16_t Y,char* str,FontDef_t* Font,int IndexColor);
+void PrintLCD(uint16_t X,uint16_t Y,char* str,int IndexColor);
+void AddTotal(char *str ,int BagOrSmail);
+
+//Main
+void GetList(int* Index,int* IndexMenu);
+void GetListMainMenus(int IndexMenu, char *str[] ) ;
+
+//Sol - page UI
+void GetListLed(int IndexMenu);
+void GetListLed_RGB(int IndexMenu);
+void GetListAbout(int IndexMenu);
+void GetListTemperatureSensor(int IndexMenu);
+void GetListBzSensor(int IndexMenu);
+void GetListSoonModel();
+
+
+
+
+
+
+
+
+

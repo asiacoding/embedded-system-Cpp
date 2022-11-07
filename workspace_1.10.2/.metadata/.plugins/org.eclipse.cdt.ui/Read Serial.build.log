@@ -1,0 +1,10 @@
+00:43:01 **** Incremental Build of configuration Debug for project Read Serial ****
+make -j4 all 
+arm-none-eabi-size   Read\ Serial.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30252	    388	   6084	  36724	   8f74	Read Serial.elf
+Finished building: default.size.stdout
+ 
+
+00:43:01 Build Finished. 0 errors, 0 warnings. (took 498ms)
+

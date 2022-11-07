@@ -1,0 +1,33 @@
+int main(void) {
+	/* USER CODE BEGIN 1 */
+
+	/* USER CODE END 1 */
+
+	/* MCU Configuration--------------------------------------------------------*/
+
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
+
+	/* USER CODE BEGIN SysInit */
+	//SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;
+	//SysTick->LOAD = 72000 - 1;
+	MX_GPIO_Init();
+	SysTick->CTRL = (1 << 0) | (1 << 2);
+	SysTick->LOAD = 7999; //
+
+	while (1) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11,1);
+		//sysTickDelay(4000);
+	}
+}
+
+void sysTickDelay(int delay) {
+	while (delay--) {
+
+		while (!(SysTick->CTRL & (1 << 16)))
+		{
+
+		};
+	}
+
+}

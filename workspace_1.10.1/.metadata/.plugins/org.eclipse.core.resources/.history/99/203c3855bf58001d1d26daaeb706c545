@@ -1,0 +1,24 @@
+/*
+ * Display.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "Display.h"
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include <stdbool.h>
+
+
+Display::Display() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Display::~Display() {
+	// TODO Auto-generated destructor stub
+}
+

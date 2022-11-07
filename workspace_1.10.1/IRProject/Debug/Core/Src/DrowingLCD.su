@@ -1,0 +1,11 @@
+../Core/Src/DrowingLCD.c:8:6:PrintLCDByFont	24	static
+../Core/Src/DrowingLCD.c:14:6:PrintLCD	24	static
+../Core/Src/DrowingLCD.c:20:6:AddTotal	24	static
+../Core/Src/DrowingLCD.c:29:6:GetList	72	static
+../Core/Src/DrowingLCD.c:85:6:GetListMainMenus	32	static
+../Core/Src/DrowingLCD.c:106:6:GetListLed	16	static
+../Core/Src/DrowingLCD.c:123:6:GetListLed_RGB	16	static
+../Core/Src/DrowingLCD.c:149:6:GetListTemperatureSensor	40	static
+../Core/Src/DrowingLCD.c:167:6:GetListBuzzerSensor	16	static
+../Core/Src/DrowingLCD.c:172:6:GetListAbout	16	static
+../Core/Src/DrowingLCD.c:202:6:GetListSoonModel	8	static

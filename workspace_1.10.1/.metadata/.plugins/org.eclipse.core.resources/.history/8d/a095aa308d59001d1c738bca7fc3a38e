@@ -1,0 +1,47 @@
+#include "stm32f1xx_hal.h"
+
+
+
+
+
+
+
+
+
+void PrintLCDByFont(uint16_t X,uint16_t Y,char* str,FontDef_t* Font,int IndexColor);
+void PrintLCD(uint16_t X,uint16_t Y,char* str,int IndexColor);
+
+void GetList(int Index,int Menu);
+
+
+/*
+
+
+ int CheckValueMethod(
+		uint8_t RHI_1,
+		uint8_t RHD_1,
+		uint8_t TCI_1,
+		uint8_t TCD_1,
+		uint8_t SUM_1,
+		uint32_t pMillis_1,
+		uint8_t cMillis_1,
+		float tCelsius_1 ,
+		float tFahrenheit_1 ,
+		float RH_1,
+		uint8_t TFI_1 ,
+		uint8_t TFD_1 ,
+		int StapMune_1,
+		char strCopy_1[15],
+		int LowestTemperature_1,
+		uint8_t (*DHT11_Read_1)(void) );
+
+
+  */
+
+
+
+
+
+
+
+

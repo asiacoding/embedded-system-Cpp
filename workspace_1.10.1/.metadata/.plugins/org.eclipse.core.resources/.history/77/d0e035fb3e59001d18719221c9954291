@@ -1,0 +1,18 @@
+/*
+ * LcdOledModule.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "LcdOledModule.h"
+
+LcdOledModule::LcdOledModule() {
+	// TODO Auto-generated constructor stub
+
+}
+
+LcdOledModule::~LcdOledModule() {
+	// TODO Auto-generated destructor stub
+}
+

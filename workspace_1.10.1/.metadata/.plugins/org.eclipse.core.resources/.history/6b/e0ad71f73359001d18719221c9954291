@@ -1,0 +1,17 @@
+/*
+ * MainClass.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#ifndef SRC_MAINCLASS_H_
+#define SRC_MAINCLASS_H_
+
+class MainClass {
+public:
+	MainClass();
+	virtual ~MainClass();
+};
+
+#endif /* SRC_MAINCLASS_H_ */

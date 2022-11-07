@@ -1,0 +1,24 @@
+/*
+ * MainClass.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#ifndef SRC_MAINCLASS_H_
+#define SRC_MAINCLASS_H_
+
+class MainClass {
+public:
+	MainClass();
+	virtual ~MainClass();
+	void SystemClock_Config(void);
+	 void MX_GPIO_Init(void);
+	 void MX_TIM1_Init(void);
+	 void MX_I2C1_Init(void);
+
+	 I2C_HandleTypeDef hi2c1;
+	 TIM_HandleTypeDef htim1;
+};
+
+#endif /* SRC_MAINCLASS_H_ */

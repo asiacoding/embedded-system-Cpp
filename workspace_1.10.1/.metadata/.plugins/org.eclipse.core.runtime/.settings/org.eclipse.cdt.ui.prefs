@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+formattingConfirmScopeForEmptySelection=false
+forwardDeclare.enums=true
+forwardDeclare.externalVariables=true
+forwardDeclare.functions=true
+forwardDeclare.templates=true
+scalability.detect=false
+sourceHoverBackgroundColor=255,255,225
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

@@ -1,0 +1,34 @@
+/*
+ * MainClass.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "MainClass.h"
+#include "stm32f1xx_hal.h"
+
+MainClass::MainClass() {
+	// TODO Auto-generated constructor stub
+
+	 /* Configure the system clock */
+	MainClass::SystemClock_Config();
+
+	  /* USER CODE BEGIN SysInit */
+
+	  /* USER CODE END SysInit */
+
+	  /* Initialize all configured peripherals */
+	this->MX_GPIO_Init();
+	this->MX_TIM1_Init();
+	this->MX_I2C1_Init();
+	  /* USER CODE BEGIN 2 */
+
+
+
+}
+
+MainClass::~MainClass() {
+	// TODO Auto-generated destructor stub
+}
+

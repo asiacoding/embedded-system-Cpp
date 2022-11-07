@@ -1,0 +1,16 @@
+
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "stm32f1xx_hal.h"
+
+ #define foreach(item, array) \
+    for(int keep = 1, \
+            count = 0,\
+            size = sizeof (array) / sizeof *(array); \
+        keep && count != size; \
+        keep = !keep, count++) \
+      for(item = (array) + count; keep; keep = !keep)
+
+#define add_array(itemarry,Index,Value) \
+	*itemarry[Index] = Value

@@ -1,0 +1,3 @@
+../Core/Src/DrowingLCD.c:22:9:DHT11_Start	40	static
+../Core/Src/DrowingLCD.c:53:9:DHT11_Read	24	static
+../Core/Src/DrowingLCD.c:84:5:CheckValueMethod	32	static

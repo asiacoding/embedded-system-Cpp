@@ -1,0 +1,20 @@
+21:27:48 **** Incremental Build of configuration Debug for project SmartSystem ****
+make -j4 all 
+arm-none-eabi-g++ "../Core/Src/LcdOledModule.cpp" -mcpu=cortex-m3 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/LcdOledModule.d" -MT"Core/Src/LcdOledModule.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/LcdOledModule.o"
+arm-none-eabi-g++ -o "SmartSystem.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\ehabm\STM32CubeIDE\workspace_1.10.1\SmartSystem\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SmartSystem.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: SmartSystem.elf
+ 
+arm-none-eabi-size   SmartSystem.elf 
+arm-none-eabi-objdump -h -S  SmartSystem.elf  > "SmartSystem.list"
+arm-none-eabi-objcopy  -O ihex  SmartSystem.elf  "SmartSystem.hex"
+   text	   data	    bss	    dec	    hex	filename
+  12180	    128	   1592	  13900	   364c	SmartSystem.elf
+Finished building: default.size.stdout
+ 
+Finished building: SmartSystem.hex
+ 
+Finished building: SmartSystem.list
+ 
+
+21:27:50 Build Finished. 0 errors, 0 warnings. (took 1s.225ms)
+

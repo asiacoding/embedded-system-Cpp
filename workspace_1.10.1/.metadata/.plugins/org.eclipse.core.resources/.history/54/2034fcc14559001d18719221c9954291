@@ -1,0 +1,36 @@
+#include <ConfingSystem.h>
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "LcdOledModule.h"
+#include "stdio.h"
+
+
+
+
+int main(void) {
+
+
+	ConfingSystem ConfiObj;
+	LcdOledModule LcdObj;
+
+
+	ConfiObj.InitApp();
+	//LcdObj.DrowingText(strCopyBase, x, y, indexObj);
+
+
+	 char* strCopy [5];
+
+	while (1) {
+		for(int i=0 ;i> 4000;i++){
+
+			sprintf(strCopy, "Count:%d",i);
+			ConfiObj.TogglePin(GPIOC, GPIO_PIN_14);
+				LcdObj.SetText(strCopy, &Font_7x10, 0, 0, SSD1306_COLOR_BLACK);
+				HAL_Delay(1000);
+		}
+
+	}
+
+}
+

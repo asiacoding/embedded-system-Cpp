@@ -1,0 +1,44 @@
+static volatile uint32_t ms_ticks = 0;
+static volatile bool tick_1ms_elapsed = false;
+static volatile bool tick_1000ms_elapsed = false;
+
+//! The interrupt handler for the SysTick module
+void SysTick_Handler(void)
+{
+    ms_ticks++;
+
+    tick_1ms_elapsed = true;
+
+    if (ms_ticks % 1000 == 0) {
+        tick_1000ms_elapsed = true;
+    }
+}
+
+void main(void) {
+
+    // Setup SysTick Timer for 1ms interrupts
+    if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
+        while (true) {  /* no error must happen here, otherwise this board is dead */ }
+    }
+
+    while(true) {
+
+        if (tick_1ms_elapsed) {
+         //   ... Do something every ms
+            tick_1ms_elapsed = false; // Reset the flag (signal 'handled')
+        }
+
+        if (tick_1000ms_elapsed) {
+           // ... Do something every second
+            if (state == STATE_1) {
+                DoTaskOne;
+                state = STATE_2;
+            }
+            else if (state == STATE_2) {
+                DoTaskTwo;
+                state = STATE_3;
+            }
+            tick_1000ms_elapsed = false;  // Reset the flag (signal 'handled')
+        }
+    }
+}

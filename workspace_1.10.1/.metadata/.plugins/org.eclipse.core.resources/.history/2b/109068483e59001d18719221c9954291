@@ -1,0 +1,26 @@
+#include <ConfingSystem.h>
+
+//anything you want to attach before infinite loops out here
+//nots Only Confing
+void ConfingSystem::InitApp() {
+	HAL_Init();
+	SystemClock_Config();
+	this->MX_GPIO_Init();
+	this->MX_TIM1_Init();
+	this->MX_I2C1_Init();
+}
+
+ int ConfingSystem::ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
+	//GPIO A - B - C - D , int
+	return HAL_GPIO_ReadPin(GPIOx, GPIO_Pin);
+}
+
+ void ConfingSystem::WritePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, int PinState) {
+	HAL_GPIO_WritePin(GPIOx, GPIO_Pin,
+			(PinState == 0) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+}
+
+ void ConfingSystem::TogglePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
+	HAL_GPIO_TogglePin(GPIOx, GPIO_Pin);
+}
+

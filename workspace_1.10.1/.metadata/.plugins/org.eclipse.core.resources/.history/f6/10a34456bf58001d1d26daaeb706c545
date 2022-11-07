@@ -1,0 +1,17 @@
+/*
+ * Display.h
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#ifndef SRC_DISPLAY_H_
+#define SRC_DISPLAY_H_
+
+class Display {
+public:
+	Display();
+	virtual ~Display();
+};
+
+#endif /* SRC_DISPLAY_H_ */

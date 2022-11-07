@@ -1,0 +1,7 @@
+#include "stm32f1xx_hal.h"
+
+
+
+void ClickButtons(int* index,int* MainMenu);
+void MeunLed(int Myindex,int* MainMenu);
+void MainMeun(int Myindex,int* MainMenu);

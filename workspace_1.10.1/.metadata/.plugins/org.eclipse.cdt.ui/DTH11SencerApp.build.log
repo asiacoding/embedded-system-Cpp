@@ -1,0 +1,10 @@
+03:44:51 **** Build of configuration Debug for project DTH11SencerApp ****
+make -j4 all 
+arm-none-eabi-size   DTH11SencerApp.elf 
+   text	   data	    bss	    dec	    hex	filename
+  10536	     20	   1668	  12224	   2fc0	DTH11SencerApp.elf
+Finished building: default.size.stdout
+ 
+
+03:44:51 Build Finished. 0 errors, 0 warnings. (took 457ms)
+

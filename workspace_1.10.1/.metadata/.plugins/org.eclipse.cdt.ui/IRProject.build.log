@@ -1,0 +1,20 @@
+18:10:41 **** Incremental Build of configuration Debug for project IRProject ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/EventClicks.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/EventClicks.d" -MT"Core/Src/EventClicks.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/EventClicks.o"
+arm-none-eabi-g++ -o "IRProject.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\ehabm\STM32CubeIDE\workspace_1.10.1\IRProject\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="IRProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: IRProject.elf
+ 
+arm-none-eabi-size   IRProject.elf 
+arm-none-eabi-objdump -h -S  IRProject.elf  > "IRProject.list"
+arm-none-eabi-objcopy  -O ihex  IRProject.elf  "IRProject.hex"
+   text	   data	    bss	    dec	    hex	filename
+  26044	    136	   2816	  28996	   7144	IRProject.elf
+Finished building: default.size.stdout
+ 
+Finished building: IRProject.hex
+ 
+Finished building: IRProject.list
+ 
+
+18:10:42 Build Finished. 0 errors, 0 warnings. (took 1s.25ms)
+

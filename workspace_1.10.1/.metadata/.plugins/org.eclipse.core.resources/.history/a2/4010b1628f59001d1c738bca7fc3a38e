@@ -1,0 +1,6 @@
+#include "stm32f1xx_hal.h"
+
+
+
+void AgreeButton1(int* index1,int* IndexMenu);
+void Mune1s1(int* index1);

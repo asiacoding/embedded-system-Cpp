@@ -1,0 +1,53 @@
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "EventClicks.h"
+
+
+/*
+ * Name  	| Index | CountIndex
+ * ----------------------------------
+ * Led   	| 1 	 | ( index = 0 ~ 3 )
+ * MainMun  | 0	     | ( Index = 0 ~ 1 )
+ * */
+
+
+void ClickButtons(int* index,int* MainMenu)
+{
+
+	int GetIndexValue = *index;
+
+	int GetMainMenuValue = *MainMenu;
+
+	if(GetMainMenuValue == 1) EventMeunLed(GetIndexValue,MainMenu); else
+
+	if(GetMainMenuValue == 0) EventMainMeun(GetIndexValue,MainMenu);
+
+}
+
+void EventMainMeun(int Myindex,int* MainMenu){
+	*MainMenu = Myindex;
+}
+void EventMeunLed(int Myindex,int* MainMenu)
+{
+	if(Myindex == 0 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+	}
+
+	if(Myindex == 1 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+	}
+
+	if(Myindex == 2 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_15);
+	}
+
+	if(Myindex==3){
+		//MainMenu
+		*MainMenu = 0;// Back TO MainMeun
+	}
+}

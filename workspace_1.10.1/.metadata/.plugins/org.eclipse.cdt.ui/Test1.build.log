@@ -1,0 +1,10 @@
+15:52:19 **** Incremental Build of configuration Debug for project Test1 ****
+make -j4 all 
+arm-none-eabi-objcopy -O ihex Test1.elf Test1.hex
+arm-none-eabi-objcopy: 'Test1.elf': No such file
+make[1]: *** [makefile:100: pre-build] Error 1
+make: *** [makefile:73: all] Error 2
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+15:52:19 Build Failed. 2 errors, 0 warnings. (took 516ms)
+

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;TimerProject/Core/Inc/SysTick&apos; to &apos;SysTick.c&apos;" description="Rename resource &apos;SysTick&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/SysTick" name="SysTick.c" stamp="1667765684549" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;TimerProject/Core/Inc/SysTick.c&apos; to &apos;SysTick.comments&apos;" description="Rename resource &apos;SysTick.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/SysTick.c" name="SysTick.comments" stamp="1667765822542" updateReferences="true"/>
+</session>

@@ -1,0 +1,16 @@
+/*
+ * LcdOledModule.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "LcdOledModule.h"
+
+void LcdOledModule::InitObj(){
+    HAL_TIM_Base_Start(&htim1);
+    SSD1306_Init();
+}
+
+
+

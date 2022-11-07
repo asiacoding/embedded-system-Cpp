@@ -1,0 +1,36 @@
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "EventClicks.h"
+
+
+
+
+
+void AgreeButton1(int index1,int IndexMenu)
+{
+	if(IndexMenu == 1)
+	{
+		Mune1s1(index1);
+	}
+}
+
+
+void Mune1s1(int index1)
+{
+	if(index1 == 0 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+	}
+
+	if(index1 == 1 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+	}
+
+	if(index1 == 2 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_15);
+	}
+}

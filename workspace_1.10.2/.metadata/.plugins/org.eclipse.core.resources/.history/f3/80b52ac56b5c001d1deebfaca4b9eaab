@@ -1,0 +1,37 @@
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "ProjectOX.h"
+
+//Base Method add here only
+void PrintLCDByFont(uint16_t X, uint16_t Y, char *str, FontDef_t *Font,
+		int IndexColor) {
+
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, Font,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+
+void PrintLCD(uint16_t X, uint16_t Y, char *str, int IndexColor) {
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, &Font_7x10,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+
+void AddTotal(char *str, int BagOrSmail) {
+	if (BagOrSmail == 0) {
+		PrintLCDByFont(20, 0, str, &Font_7x10, 1);
+	} else {
+		PrintLCDByFont(20, 0, str, &Font_11x18, 1);
+	}
+}
+
+//Main Method
+void GetList(int *Index, int *IndexMenu) {
+
+	int MyValueIndex = *Index;
+	int MyValueMainMenu = *IndexMenu;
+
+	SSD1306_UpdateScreen();
+}
+

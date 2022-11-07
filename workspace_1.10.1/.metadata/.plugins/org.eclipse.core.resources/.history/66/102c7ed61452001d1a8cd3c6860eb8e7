@@ -1,0 +1,48 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+unsigned int  btn2 = 0;
+int main(void)
+{
+	RCC-> APB2ENR = (1<<2) | (1<<3);
+	GPIOA -> CRL = 0x00000030;
+	GPIOB -> CRL=  0x00040000;
+	while(1){
+
+		unsigned int  btn1 = GPIOB -> IDR &(1<<4);
+		if(btn1 == 0)
+		{
+			btn2=2;
+		}
+		else{
+			btn2=1;
+				}
+
+		if(btn1 == 2){
+			for(int i=0;i<10000;i++);
+			GPIOA->ODR =(1<<1);
+			for(int i=0;i<10000;i++);
+		}
+		else if(btn1 == 1){
+			GPIOA->ODR &= ~(1<<1);
+		}
+	}
+}

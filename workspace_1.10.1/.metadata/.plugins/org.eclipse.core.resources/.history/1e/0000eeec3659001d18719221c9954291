@@ -1,0 +1,16 @@
+#include "main.h"
+#include "MainClass.h"
+
+int main(void)
+{
+
+	MainClass f{1};
+	f.InitApp();
+
+  while (1)
+  {
+
+  }
+
+}
+

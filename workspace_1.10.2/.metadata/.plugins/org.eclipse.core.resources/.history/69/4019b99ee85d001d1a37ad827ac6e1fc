@@ -1,0 +1,163 @@
+/*
+About Codes )
+
+	int *winner[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	int len = GetLenInt(winner); //Get Last Index
+	*winner[(len == 0) ? 0 : len - 1] = Player;
+
+	 Box1) |
+	 ________________________________
+	 | 1, ,1 | arr Index -> | 1,0,1 |
+	 | 1,2,2 |              | 1,2,2 |
+	 | 2, ,  | <- UI        | 2,0,0 |
+	 |-------|--------------|-------|
+
+
+
+
+*/
+
+
+
+
+
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "ProjectOX.h"
+#include "EX.h"
+//Base Method add here only
+
+
+
+
+// Add X or O Value Only
+char *MapPlayerChar[9] = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
+
+// 1 = X
+// 2 = O
+// Check Index Then Win or Loss (mapping XO)
+int *winner[9] = {0,0,0,0,0,0,0,0,0};
+
+void PrintLCDByFont(uint16_t X, uint16_t Y, char *str, FontDef_t *Font,
+		int IndexColor) {
+
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, Font,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+void PrintLCD(uint16_t X, uint16_t Y, char *str, int IndexColor) {
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, &Font_7x10,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+void AddTotal(char *str, int BagOrSmail) {
+	if (BagOrSmail == 0) {
+		PrintLCDByFont(20, 0, str, &Font_7x10, 1);
+	} else {
+		PrintLCDByFont(20, 0, str, &Font_11x18, 1);
+	}
+}
+
+//Main Method
+void GetList(int *Index, int *IndexMenu) {
+	DisplyGird(*Index);
+	SSD1306_UpdateScreen();
+}
+
+struct GameOver Play(int index, int Player) {
+	// 1 = X
+	// 2 = O
+	MapPlayerChar[index == 0 ? 0 : index - 1] = Player == 1 ? "X" : Player == 2  ? "O" : " ";
+
+	//Set to Maping Player
+	int len = GetLenInt(winner);
+	*winner[(len == 0) ? 0 : len - 1] = Player;
+
+	return StatusGame();
+}
+
+// 10 = End Gamse
+// 1 = Win
+// 0 = Runing play
+struct GameOver StatusGame() {
+	struct GameOver GamesStatus;
+	// Win = 123,456,789,357,147,258, Set 1 Or Set Value = 0
+	int WIN1, WIN2, Status;
+	WIN1 = *winner[1] == 1 && *winner[2] == 1 && *winner[3] == 1 ? 1 : 0;//123
+	WIN1 = *winner[4] == 1 && *winner[5] == 1 && *winner[6] == 1 ? 1 : 0;//456
+	WIN1 = *winner[7] == 1 && *winner[8] == 1 && *winner[9] == 1 ? 1 : 0;//789
+	WIN1 = *winner[1] == 1 && *winner[5] == 1 && *winner[9] == 1 ? 1 : 0;//159
+	WIN1 = *winner[3] == 1 && *winner[5] == 1 && *winner[7] == 1 ? 1 : 0;//357
+	WIN1 = *winner[1] == 1 && *winner[4] == 1 && *winner[7] == 1 ? 1 : 0;//147
+	WIN1 = *winner[2] == 1 && *winner[5] == 1 && *winner[8] == 1 ? 1 : 0;//258
+	WIN1 = *winner[3] == 1 && *winner[6] == 1 && *winner[9] == 1 ? 1 : 0;//369
+
+	WIN2 = *winner[1] == 2 && *winner[2] == 2 && *winner[3] == 2 ? 1 : 0;//123
+	WIN2 = *winner[4] == 2 && *winner[5] == 2 && *winner[6] == 2 ? 1 : 0;//456
+	WIN2 = *winner[7] == 2 && *winner[8] == 2 && *winner[9] == 2 ? 1 : 0;//789
+	WIN2 = *winner[1] == 2 && *winner[5] == 2 && *winner[9] == 2 ? 1 : 0;//159
+	WIN2 = *winner[3] == 2 && *winner[5] == 2 && *winner[7] == 2 ? 1 : 0;//357
+	WIN2 = *winner[1] == 2 && *winner[4] == 2 && *winner[7] == 2 ? 1 : 0;//147
+	WIN2 = *winner[2] == 2 && *winner[5] == 2 && *winner[8] == 2 ? 1 : 0;//258
+	WIN2 = *winner[3] == 2 && *winner[6] == 2 && *winner[9] == 2 ? 1 : 0;//369
+
+	Status =
+			*winner[1] != 0 && *winner[2] != 0 && *winner[3] != 0
+					&& *winner[6] != 0 && *winner[5] != 0 && *winner[4] != 0
+					&& *winner[7] != 0 && *winner[8] != 0 && *winner[9] != 0 ?
+					1 : 0;
+
+	GamesStatus.Stuts =   0; //(Status == 1 || WIN2 == 1 || WIN1 == 1) ? 1 : 0; //Set End Gmae
+	GamesStatus.WinPlayer =  0 ; //(WIN1 == 1 ? 1 : WIN2 == 1) ? 2 : 0; // This == 1 Win X or 2 Win O else No winGames
+
+	return GamesStatus;
+}
+
+void DisplyGird(int IndexPlay) {
+
+	//X Y W H
+	//uint16_t x, uint16_t y, uint16_t w, uint16_t h
+
+	int XSize = 5;
+	int YSize = 3;
+
+	SSD1306_DrawRectangle(0, //X
+			0, // Y
+			24 + 12 + XSize, // W
+			24 + 12 + XSize, // H
+			1); //
+
+	int X1 = 0 + XSize;  // X and Y in Rectangle
+	int X2 = 12 + XSize; //
+	int X3 = 24 + XSize; // W
+	int Y1 = 0 + YSize; //
+	int Y2 = 12 + YSize; //
+	int Y3 = 24 + YSize; // H
+
+	//------------------------------------
+	PrintLCD(X1, Y1, MapPlayerChar[0], (IndexPlay == 1) ? 0 : 1);
+	PrintLCD(X2, Y1, MapPlayerChar[1], (IndexPlay == 2) ? 0 : 1);
+	PrintLCD(X3, Y1, MapPlayerChar[2], (IndexPlay == 3) ? 0 : 1);
+	//-------------------------------------
+	PrintLCD(X1, Y2, MapPlayerChar[3], (IndexPlay == 4) ? 0 : 1);
+	PrintLCD(X2, Y2, MapPlayerChar[4], (IndexPlay == 5) ? 0 : 1);
+	PrintLCD(X3, Y2, MapPlayerChar[5], (IndexPlay == 6) ? 0 : 1);
+	//-------------------------------------
+	PrintLCD(X1, Y3, MapPlayerChar[6], (IndexPlay == 7) ? 0 : 1);
+	PrintLCD(X2, Y3, MapPlayerChar[7], (IndexPlay == 8) ? 0 : 1);
+	PrintLCD(X3, Y3, MapPlayerChar[8], (IndexPlay == 9) ? 0 : 1);
+	//-------------------------------------
+
+	PrintLCD(24 + 12 + 5 + 5, 0, "Status Gamse", (IndexPlay == 0) ? 0 : 1);
+
+	/*
+	 - X = 0
+	 - EndY = 24
+	 - W = 24
+	 - H = 48
+	 */
+
+}
+

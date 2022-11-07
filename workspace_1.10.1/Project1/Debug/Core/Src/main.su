@@ -1,0 +1,8 @@
+../Core/Src/main.c:20:5:main	8	static
+../Core/Src/main.c:62:6:stopSw	8	static
+../Core/Src/main.c:86:5:RunSw	16	static
+../Core/Src/main.c:125:13:Delay	24	static
+../Core/Src/main.c:143:6:SmallLightSwitch	8	static
+../Core/Src/main.c:167:6:SystemClock_Config	72	static
+../Core/Src/main.c:204:13:MX_GPIO_Init	40	static
+../Core/Src/main.c:259:6:Error_Handler	4	static,ignoring_inline_asm

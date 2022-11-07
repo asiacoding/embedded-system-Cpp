@@ -1,0 +1,25 @@
+/*
+ * LcdOledModule.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+
+#include "LcdOledModule.h"
+#include "fonts.h"
+#include "ssd1306.h"
+
+
+void LcdOledModule::InitObj() {
+
+}
+
+void LcdOledModule::microDelay(uint16_t delay) {
+
+}
+
+void LcdOledModule::SetText(Char* str ,  FontDef_t* Fonts,int X,int Y,int ColorIndex){
+
+}
+

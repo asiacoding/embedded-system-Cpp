@@ -1,0 +1,2 @@
+../Core/Src/LcdOledModule.h:30:2:LcdOledModule::LcdOledModule()	16	static
+../Core/Src/main.cpp:7:5:int main()	336	static

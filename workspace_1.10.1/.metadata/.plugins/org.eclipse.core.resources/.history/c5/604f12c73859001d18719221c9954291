@@ -1,0 +1,14 @@
+#include "main.h"
+#include "MainClass.h"
+
+int main(void) {
+
+	MainClass f;
+	f.InitApp();
+	int v = MainClass::ReadPin(GPIOC, HAL_Write_PIN);
+	while (1) {
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_15);
+	}
+
+}
+

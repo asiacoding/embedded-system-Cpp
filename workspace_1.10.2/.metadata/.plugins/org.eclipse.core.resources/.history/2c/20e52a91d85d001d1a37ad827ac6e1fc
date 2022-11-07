@@ -1,0 +1,130 @@
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "ProjectOX.h"
+//#include "EX.h"
+//Base Method add here only
+
+void PrintLCDByFont(uint16_t X, uint16_t Y, char *str, FontDef_t *Font,
+		int IndexColor) {
+
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, Font,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+void PrintLCD(uint16_t X, uint16_t Y, char *str, int IndexColor) {
+	SSD1306_GotoXY(X, Y);
+	SSD1306_Puts(str, &Font_7x10,
+			(IndexColor == 0) ? SSD1306_COLOR_BLACK : SSD1306_COLOR_WHITE);
+}
+void AddTotal(char *str, int BagOrSmail) {
+	if (BagOrSmail == 0) {
+		PrintLCDByFont(20, 0, str, &Font_7x10, 1);
+	} else {
+		PrintLCDByFont(20, 0, str, &Font_11x18, 1);
+	}
+}
+
+///-----------
+//   |1|2|3|
+//------------
+//	 |4|5|6|
+//-----------
+//   |7|8|9|
+//---------------
+// Win = 123,456,789,357,147,258,
+
+//Main Method
+void GetList(int *Index, int *IndexMenu) {
+
+	//int MyValueIndex = *Index;
+	//int MyValueMainMenu = *IndexMenu;
+
+	DisplyGird(*Index);
+
+	/*
+	 GetstringFromString
+	 const char * request = 'GET /favicon.ico HTTP/1.1';
+	 const char * Get ='favicon';
+	 if (strstr(request, Get) != NULL){}
+
+	 */
+
+	SSD1306_UpdateScreen();
+}
+
+char *MapPlayerChar[9] = { " "," "," ", " " , " " ," " ," ", " ", " "};
+int *Player1Maping[6] = {  }; // X Maping Player
+int *Player2Maping[6] = {  }; // O Maping Player
+
+//
+int Play(int index, int Player) {
+
+	MapPlayerChar[index ==0 ? 0 : index-1] = Player == 0 ? "X" : "O";
+
+	//if(Player == 0)
+
+	return 0;
+}
+
+void DisplyGird(int IndexPlay) {
+
+	//X Y W H
+	//uint16_t x, uint16_t y, uint16_t w, uint16_t h
+
+	int XSize = 5;
+	int YSize = 3;
+
+
+	SSD1306_DrawRectangle(
+			0, //X
+			0, // Y
+			24 + 12 + XSize, // W
+			24 + 12 + XSize, // H
+			1); //
+
+	int X1 = 0 + XSize;  // X and Y in Rectangle
+	int X2 = 12 + XSize; //
+	int X3 = 24 + XSize; // W
+	int Y1 = 0 + YSize; //
+	int Y2 = 12 + YSize; //
+	int Y3 = 24 + YSize; // H
+
+	//------------------------------------
+	PrintLCD(X1, Y1, MapPlayerChar[0], (IndexPlay == 1) ? 0 : 1);
+	PrintLCD(X2, Y1, MapPlayerChar[1], (IndexPlay == 2) ? 0 : 1);
+	PrintLCD(X3, Y1, MapPlayerChar[2], (IndexPlay == 3) ? 0 : 1);
+	//-------------------------------------
+	PrintLCD(X1, Y2, MapPlayerChar[3], (IndexPlay == 4) ? 0 : 1);
+	PrintLCD(X2, Y2, MapPlayerChar[4], (IndexPlay == 5) ? 0 : 1);
+	PrintLCD(X3, Y2, MapPlayerChar[5], (IndexPlay == 6) ? 0 : 1);
+	//-------------------------------------
+	PrintLCD(X1, Y3, MapPlayerChar[6], (IndexPlay == 7) ? 0 : 1);
+	PrintLCD(X2, Y3, MapPlayerChar[7], (IndexPlay == 8) ? 0 : 1);
+	PrintLCD(X3, Y3, MapPlayerChar[8], (IndexPlay == 9) ? 0 : 1);
+	//-------------------------------------
+
+	/*
+	 - X = 0
+	 - EndY = 24
+	 - W = 24
+	 - H = 48
+	 */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

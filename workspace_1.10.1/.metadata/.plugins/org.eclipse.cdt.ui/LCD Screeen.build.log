@@ -1,0 +1,10 @@
+03:44:53 **** Build of configuration Debug for project LCD Screeen ****
+make -j4 all 
+arm-none-eabi-size   LCD\ Screeen.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11088	     28	   2684	  13800	   35e8	LCD Screeen.elf
+Finished building: default.size.stdout
+ 
+
+03:44:53 Build Finished. 0 errors, 0 warnings. (took 596ms)
+

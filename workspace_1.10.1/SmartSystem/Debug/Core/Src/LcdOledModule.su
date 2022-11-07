@@ -1,0 +1,2 @@
+../Core/Src/LcdOledModule.cpp:14:6:void LcdOledModule::SetText(char*, FontDef_t*, uint16_t, uint16_t, SSD1306_COLOR_t)	24	static
+../Core/Src/LcdOledModule.cpp:20:6:void LcdOledModule::Clear()	16	static

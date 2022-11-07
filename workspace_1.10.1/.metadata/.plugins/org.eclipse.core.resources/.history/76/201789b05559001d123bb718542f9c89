@@ -1,0 +1,323 @@
+//* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
+TIM_HandleTypeDef htim1;
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
+static void MX_TIM1_Init(void);
+int CheckValueMethod(int StapMune);
+void DrowingText(char strCopyBase,int x,int y,SSD1306_COLOR_t indexObj);
+void DrowingText1(char strCopyBase,int x,int y,SSD1306_COLOR_t indexObj, FontDef_t NewFont);
+void AgreeButton();
+
+
+int ReadPin(GPIO_TypeDef * Ty,uint16_t Pin)
+{
+	//GPIO A - B - C - D , int
+	return  Ty -> IDR &Pin;
+}
+
+
+
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+#define DHT11_PORT GPIOA
+#define DHT11_PIN GPIO_PIN_8
+uint8_t RHI, RHD, TCI, TCD, SUM;
+uint32_t pMillis, cMillis;
+float tCelsius = 0;
+float tFahrenheit = 0;
+float RH = 0;
+uint8_t TFI = 0;
+uint8_t TFD = 0;
+int IndexMune = 0;
+char strCopy[15];
+const int LowestTemperature = 28;
+
+//int Read2Click = 0;
+
+void microDelay (uint16_t delay)
+{
+  __HAL_TIM_SET_COUNTER(&htim1, 0);
+  while (__HAL_TIM_GET_COUNTER(&htim1) < delay);
+}
+
+uint8_t DHT11_Start (void)
+{
+  uint8_t Response = 0;
+  GPIO_InitTypeDef GPIO_InitStructPrivate = {0};
+  GPIO_InitStructPrivate.Pin = DHT11_PIN;
+  GPIO_InitStructPrivate.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStructPrivate.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStructPrivate.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(DHT11_PORT, &GPIO_InitStructPrivate); // set the pin as output
+  HAL_GPIO_WritePin (DHT11_PORT, DHT11_PIN, 0);   // pull the pin low
+  HAL_Delay(20);   // wait for 20ms
+  HAL_GPIO_WritePin (DHT11_PORT, DHT11_PIN, 1);   // pull the pin high
+  microDelay (30);   // wait for 30us
+  GPIO_InitStructPrivate.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStructPrivate.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(DHT11_PORT, &GPIO_InitStructPrivate); // set the pin as input
+  microDelay (40);
+  if (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))
+  {
+    microDelay (80);
+    if ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN))) Response = 1;
+  }
+  pMillis = HAL_GetTick();
+  cMillis = HAL_GetTick();
+  while ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+  {
+    cMillis = HAL_GetTick();
+  }
+  return Response;
+}
+
+uint8_t DHT11_Read (void)
+{
+  uint8_t a = 0;
+  uint8_t b = 0;
+  for (a=0;a<8;a++)
+  {
+    pMillis = HAL_GetTick();
+    cMillis = HAL_GetTick();
+    while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+    {  // wait for the pin to go high
+      cMillis = HAL_GetTick();
+    }
+    microDelay (40);   // wait for 40 us
+    if (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))   // if the pin is low
+    {
+    	b &= ~(1<<(7-a));
+    }
+    else
+    {
+    	b|= (1<<(7-a));
+    }
+    pMillis = HAL_GetTick();
+    cMillis = HAL_GetTick();
+    while ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)) && pMillis + 2 > cMillis)
+    {  // wait for the pin to go low
+      cMillis = HAL_GetTick();
+    }
+  }
+  return b;
+}
+
+////
+///
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  MX_I2C1_Init();
+  MX_TIM1_Init();
+  HAL_TIM_Base_Start(&htim1);
+  SSD1306_Init();
+
+  //GPIOB -> IDR &(1<<Pin);
+
+
+  while (1)
+  {
+
+
+	  volatile unsigned int Ok = ReadPin(GPIOB,(uint16_t)0x0010);
+	//  volatile unsigned int U1 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
+	  volatile unsigned int Move = ReadPin(GPIOB,(uint16_t)0x0020);
+
+		if(Move == 0)
+		{
+			if(IndexMune >= 3) IndexMune = 0; else IndexMune +=1;
+		}
+
+		if(Ok == 0)
+		{
+			AgreeButton();
+		}
+
+
+		if(DHT11_Start()) CheckValueMethod(IndexMune);
+
+		HAL_Delay(2000); //1.10 S Dalay
+	  //	if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5 ) == 1 )
+	//			{
+	//				if(IndexMune < 0) IndexMune = 2; else IndexMune-=1;
+	//				if(IndexMune == 2) Read2Click = 1;
+	//			}
+	//		    if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3) == 1)
+	//			{
+	//				if(IndexMune > 2) IndexMune = 0; else IndexMune+=1;
+	//				if(IndexMune == 2) Read2Click = 1;
+	//			}
+	//		    if (HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4) == 1) {
+	//				AgreeButton();
+	//			}
+
+
+
+  }
+}
+
+
+
+
+int CheckValueMethod(int StapMune){
+	int rel = 0;
+	RHI = DHT11_Read(); // Relative humidity integral
+	RHD = DHT11_Read(); // Relative humidity decimal
+	TCI = DHT11_Read(); // Celsius integral
+	TCD = DHT11_Read(); // Celsius decimal
+	SUM = DHT11_Read(); // Check sum
+	if (RHI + RHD + TCI + TCD == SUM)
+	{
+		// Can use RHI and TCI for any purposes if whole number only needed
+		tCelsius = (float)TCI + (float)(TCD/10.0);
+		tFahrenheit = tCelsius * 9/5 + 32;
+		RH = (float)RHI + (float)(RHD/10.0);
+		// Can use tCelsius, tFahrenheit and RH for any purposes
+		TFI = tFahrenheit;  // Fahrenheit integral
+		TFD = tFahrenheit*10-TFI*10; // Fahrenheit decimal
+
+		volatile unsigned int U1 = ReadPin(GPIOB,(uint16_t)0x0010);
+
+		volatile unsigned int U2 = ReadPin(GPIOB,(uint16_t)0x0020);
+
+
+		sprintf(strCopy,
+				"1_ %d:2_ %d:s %d " ,
+				U1,U2,StapMune);
+		SSD1306_GotoXY (0, 0);
+		SSD1306_Puts (strCopy, &Font_7x10, 1);
+
+
+		//sprintf(strCopy,"%d.%d F" ,TFI,TFD);
+		//SSD1306_GotoXY (0, 12);
+		//SSD1306_Puts (strCopy, &Font_7x10, 1);
+
+
+
+		// -- Button menu Down
+
+		//"%d.%d F         "
+		//"Led-pin-13 : on "
+
+		//Tag1 = i 0
+		SSD1306_GotoXY (0, 24);
+		SSD1306_Puts ((HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13) == 0)
+				? "Led-pin-13 : off" : "Led-pin-13 : on " , &Font_7x10,
+				(StapMune <=0 || StapMune >= 3 ) ? 0 : 1);
+
+		//Tag2 = i 1
+		SSD1306_GotoXY (0, 36);
+		SSD1306_Puts ((HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_14) == 0)
+				? "Led-pin-14 : off" : "Led-pin-14 : on " , &Font_7x10,
+				(StapMune==1 ) ? 0 : 1);
+
+		//Tag3 = i 2
+		SSD1306_GotoXY (0, 48);
+		SSD1306_Puts ((HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_15) == 0)
+				? "Led-pin-15 : off" : "Led-pin-15 : on " , &Font_7x10,
+				(StapMune==2 ) ? 0 : 1);
+
+
+
+		SSD1306_UpdateScreen();
+
+		if(TCI > LowestTemperature)
+		{
+			rel = 1;
+		}
+
+	}
+
+	return rel;
+}
+
+
+
+void AgreeButton()
+{
+//	if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4) == GPIO_PIN_SET){
+//		return;
+//	}
+	if(IndexMune == 0 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+	}
+
+	if(IndexMune == 1 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+	}
+
+	if(IndexMune == 2 )
+	{
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_15);
+	}
+}
+
+

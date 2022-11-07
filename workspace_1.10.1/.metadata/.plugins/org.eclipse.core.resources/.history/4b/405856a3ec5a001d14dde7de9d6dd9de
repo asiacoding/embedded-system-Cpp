@@ -1,0 +1,28 @@
+#include "main.h"
+#include "fonts.h"
+#include "ssd1306.h"
+#include "stdio.h"
+#include "EventClicks.h"
+#include "DrowingLCD.h"
+#include "stm32f1xx_hal.h"
+
+struct DataDHT11
+{
+	const int* Val;
+	int working;
+	const int* MaxVal;
+	const uint8_t * RHI, RHD, TCI, TCD, SUM;
+	const uint32_t* pMillis, cMillis;
+	const float *tCelsius;
+	const float* tFahrenheit;
+	const uint8_t* TFI;
+} ;
+
+
+
+
+void microDelay(uint16_t delay);
+uint8_t DHT11_Start(void);
+uint8_t DHT11_Read(void);
+struct DataDHT11 Check_IN();
+

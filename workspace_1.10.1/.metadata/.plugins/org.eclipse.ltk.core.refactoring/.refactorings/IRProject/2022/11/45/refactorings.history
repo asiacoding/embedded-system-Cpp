@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;IRProject/Core/Src/StartUpSystem&apos; to &apos;StartUpSystem.c&apos;" description="Rename resource &apos;StartUpSystem&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/StartUpSystem" name="StartUpSystem.c" stamp="1667406398169" updateReferences="true"/>
+</session>

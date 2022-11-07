@@ -1,0 +1,23 @@
+#include "stm32f1xx_hal.h"
+
+
+
+
+
+
+
+void GetListLed(int IndexMune);
+void GetList(int* Index,int* IndexMenu);
+void PrintLCD(uint16_t X,uint16_t Y,char* str,int IndexColor);
+void PrintLCDByFont(uint16_t X,uint16_t Y,char* str,FontDef_t* Font,int IndexColor);
+void GetListMainMenus(int IndexMune);
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+#define DHT11_PORT GPIOA
+#define DHT11_PIN GPIO_PIN_8
+uint8_t RHI, RHD, TCI, TCD, SUM;
+uint32_t pMillis, cMillis;
+float tCelsius = 0;
+float tFahrenheit = 0;
+float RH = 0;
+uint8_t TFI = 0;
+uint8_t TFD = 0;
+int IndexMune = 0;
+char strCopy[15];
+const int LowestTemperature = 28;

@@ -1,0 +1,18 @@
+/*
+ * Led.cpp
+ *
+ *  Created on: Oct 31, 2022
+ *      Author: Ahmed Ashraf
+ */
+
+#include "Led.h"
+
+Led::Led() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Led::~Led() {
+	// TODO Auto-generated destructor stub
+}
+
