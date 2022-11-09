@@ -8,7 +8,7 @@
  * LEDs RGB | 2 	 | ( index = 0 ~ 3 )
  * */
 
-static int DoRuningBuzzer = 0;
+//static int DoRuningBuzzer = 0;
 
 int ClickButtons(int* index,int* MainMenu);
 void EventMeunLed(int Myindex,int* MainMenu);
